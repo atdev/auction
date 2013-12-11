@@ -4,4 +4,5 @@ class Category < ActiveRecord::Base
             uniqueness: true,
             length: { in: 2..50 }
   has_ancestry
+  has_many :products
 end
