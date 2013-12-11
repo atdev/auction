@@ -16,6 +16,8 @@ group :test do
   gem 'shoulda-matchers'
 end
 
+gem 'ancestry'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.1'
 

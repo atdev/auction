@@ -2,6 +2,6 @@ class Category < ActiveRecord::Base
   validates :name,
             presence: true,
             uniqueness: true,
-            length: { in: 4..50 }
-
+            length: { in: 2..50 }
+  has_ancestry
 end
