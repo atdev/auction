@@ -17,7 +17,7 @@ group :test do
 end
 
 gem 'ancestry'
-
+gem 'slim-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.1'
 
