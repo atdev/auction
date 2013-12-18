@@ -17,6 +17,7 @@ group :test do
   gem 'shoulda-matchers'
 end
 
+gem 'devise'
 gem 'ancestry'
 gem 'slim-rails'
 # Use SCSS for stylesheets
