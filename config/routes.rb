@@ -3,7 +3,7 @@ Auction::Application.routes.draw do
   root :to => "static_pages#main"
 
   namespace :admin do
-    resources :products
+    resources :products, :categories
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

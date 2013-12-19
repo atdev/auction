@@ -1,0 +1,16 @@
+.span3
+  .well.sidebar-nav
+    p
+      a href="#modal_root_category" role="button" class="btn btn-small btn-primary" data-toggle="modal" Add Root Category
+    p
+      = link_to "Add Category", new_admin_category_path, method: "get"
+    p
+      button.btn.btn-small.btn-primary id="add_subcategory" type="button" Add Subcategory
+
+    ul.nav.nav-list
+      li.nav-header
+      li= link_to "Link 1", "/path1"
+      li= link_to "Link 2", "/path2"
+      li= link_to "Link 3", "/path3"
+
+
