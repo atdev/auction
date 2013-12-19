@@ -1,3 +1,14 @@
-h1 Here we can find a list
+h4 Products
+
+table.table
+  - for p in @products
+    tr
+      td
+        a href="#" = p.name
+      td
+        = link_to "Edit", edit_admin_product_path(p)
+      td
+        = link_to "Delete", admin_product_path(p), method: "delete", data: { confirm: "You sure?" }
+      /td
 
 
