@@ -1,7 +1,9 @@
 Auction::Application.routes.draw do
   devise_for :users
-  root :to => "static_pages#main"
 
+  root :to => "static_pages#main"
+  get 'admin' => 'admin/categories#index'
+  
   namespace :admin do
     resources :products, :categories
   end
