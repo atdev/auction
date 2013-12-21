@@ -1,5 +1,8 @@
 div class="row"
   aside class="span4"
     section
-      h1
+      h4
         = @category.name
+
+= render 'breadcrumbs'
+= render 'categories_list'

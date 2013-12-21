@@ -2,15 +2,20 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @cat_roots = Category.roots
+    @categories = Category.roots
   end
 
   def show
-
+    @categories = @category.children
   end
 
   def new
-    @category = Category.new
+    parent_id = params[:parent_id]
+    if parent_id
+      @category = Category.new(parent_id: parent_id)
+    else
+      @category = Category.new
+    end
   end
 
   def create
@@ -44,7 +49,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   private
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :parent_id)
     end
 
     def set_category

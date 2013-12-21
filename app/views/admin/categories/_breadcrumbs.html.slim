@@ -1,14 +1,13 @@
-
 ul.breadcrumb
   li
-    a href="#" Home
+    = link_to "categories", admin_categories_path
     span.divider
       |/
-  li
-    a href="#" Library
-    span.divider
-      |/
-  li.active Data
-
+  - for a in @category.ancestors
+    li
+      = link_to a.name, admin_category_path(a)
+      span.divider
+        |/
+  li.active = @category.name
 
 
