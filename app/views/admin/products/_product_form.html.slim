@@ -1,0 +1,27 @@
+div class="row"
+  div class="span6 offset3"
+    = form_for [:admin, @product] do |f|
+      p
+        = render 'error_messages'
+      p
+        = f.label :name
+        = f.text_field :name
+      p
+        = f.label :category
+        = f.select(:category_id, Category.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'None'})
+      p
+        = f.label :shop_price
+        = f.text_field :shop_price
+      p
+        = f.label :image
+        = f.text_field :image
+      p
+        = f.label :description
+        = f.text_field :description
+      p
+        - if @product.new_record?
+          = f.submit "Create the product", class: "btn btn-large btn-primary"
+        - else
+          = f.submit "Edit the product", class: "btn btn-large btn-primary"
+
+

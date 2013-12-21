@@ -1,10 +1,14 @@
 class Admin::ProductsController < Admin::BaseController
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+
   def index
     @products = Product.all
   end
 
+  def show
+  end
+
   def new
-    @cat_array = Category.all.map { |c| [c.name, c.id] }
     @product = Product.new
   end
 
@@ -12,33 +16,26 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.new(product_params)
     if @product.save
       flash[:success] = "Product created."
-      redirect_to :controller => 'admin/products', :action => 'show', :id => @product
+      redirect_to [:admin, @product]
     else
       render 'new'
     end
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
-
   def edit
-    @cat_array = Category.all.map { |c| [c.name, c.id] }
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
       flash[:success] = "Product updated."
-      redirect_to :controller => 'admin/products', :action => 'show', :id => @product
+      redirect_to [:admin, @product]
     else
       render 'edit'
     end
   end
 
   def destroy
-    Product.find(params[:id]).destroy
+    @product.destroy
     flash[:success] = "Product deleted."
     redirect_to admin_products_url
   end
@@ -46,5 +43,9 @@ class Admin::ProductsController < Admin::BaseController
   private
     def product_params
       params.require(:product).permit(:name, :shop_price, :image, :description, :category_id)
+    end
+
+    def set_product
+      @product = Product.find(params[:id])
     end
 end

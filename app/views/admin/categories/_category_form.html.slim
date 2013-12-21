@@ -1,0 +1,14 @@
+div class="row"
+  div class="span6 offset3"
+    = form_for [:admin, @category] do |f|
+
+      = render 'error_messages'
+
+      = f.label :name
+      = f.text_field :name
+
+      - if @category.new_record?
+        = f.submit "Create the category", class: "btn btn-large btn-primary"
+      - else
+        = f.submit "Edit the category", class: "btn btn-large btn-primary"
+
