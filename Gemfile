@@ -20,6 +20,7 @@ end
 gem 'devise'
 gem 'ancestry'
 gem 'slim-rails'
+gem 'carrierwave'
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.1'
 

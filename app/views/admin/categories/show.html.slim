@@ -3,6 +3,10 @@ div class="row"
     section
       h4
         = @category.name
+      - if @category.picture
+        p= image_tag @category.picture.image
+      - else
+        p The Category has no image
 
 = render 'breadcrumbs'
 = render 'categories_list'

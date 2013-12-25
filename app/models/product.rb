@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :category
+  has_many :pictures, as: :imageable
 
   validates :name, :shop_price, :image, :description, presence: true
   validates :name,
