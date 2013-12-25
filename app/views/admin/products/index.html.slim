@@ -4,7 +4,7 @@ table.table
   - for p in @products
     tr
       td
-        a href="#" = p.name
+        = link_to p.name, admin_product_path(p)
       td
         = link_to "Edit", edit_admin_product_path(p)
       td

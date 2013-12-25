@@ -12,7 +12,7 @@ describe Product do
   it { should validate_numericality_of(:shop_price).is_greater_than_or_equal_to(1) }
 
   it { should validate_presence_of :image }
-  it { should ensure_length_of(:image).is_at_least(5).is_at_most(50) }
+  #it { should ensure_length_of(:image).is_at_least(5).is_at_most(50) }
   it 'it should have allowable extension (.jpg, .jpeg, .png, .gif)' do
     #should allow_value('foo.jpg', 'fo1213o.jpeg', 'sadffasf.png', 'fldskajf.gif').
     #for(:image)

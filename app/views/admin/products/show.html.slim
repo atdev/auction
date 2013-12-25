@@ -3,3 +3,9 @@ div class="row"
     section
       h1
         = @product.name
+      p
+        - if @product.pictures
+          - @product.pictures.each do |p|
+              p= image_tag p.image
+        - else
+          p The Category has no image
