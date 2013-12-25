@@ -75,6 +75,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
+    nested_form (0.3.2)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
@@ -180,6 +181,7 @@ DEPENDENCIES
   devise
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
+  nested_form
   rails (= 4.0.2)
   rspec-rails (= 2.13.1)
   sass-rails (= 4.0.1)

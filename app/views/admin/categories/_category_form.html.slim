@@ -8,9 +8,11 @@ div class="row"
       p
         = f.label :name
         = f.text_field :name
-
-      /- if @parent_id
-              /= f.hidden_field :parent_id, @parent_id
+      p
+        = f.fields_for :picture do |p|
+          p
+            = p.label :image
+            = p.file_field :image
       = f.hidden_field :parent_id
       p
         - if @category.new_record?

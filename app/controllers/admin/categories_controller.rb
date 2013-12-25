@@ -16,6 +16,7 @@ class Admin::CategoriesController < Admin::BaseController
     else
       @category = Category.new
     end
+    @category.build_picture
   end
 
   def create
@@ -49,7 +50,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   private
     def category_params
-      params.require(:category).permit(:name, :parent_id)
+      params.require(:category).permit(:name, :parent_id, picture_attributes: [:image])
     end
 
     def set_category

@@ -6,4 +6,5 @@ class Category < ActiveRecord::Base
             uniqueness: true,
             length: { in: 2..50 }
   has_ancestry
+  accepts_nested_attributes_for :picture
 end
