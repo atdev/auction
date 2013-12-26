@@ -30,7 +30,6 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def edit
-
   end
 
   def update

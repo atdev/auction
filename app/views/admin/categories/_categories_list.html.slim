@@ -2,7 +2,6 @@ table.table
   - for c in @categories
     tr
       td
-        /a href="#" = c.name
         = link_to c.name, admin_category_path(c)
       td
         = link_to "Edit", edit_admin_category_path(c)

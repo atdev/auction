@@ -8,7 +8,7 @@ div class="row"
         = f.text_field :name
       p
         = f.label :category
-        = f.select(:category_id, Category.all.collect {|c| [ c.name, c.id ] }, {include_blank: 'None'})
+        = f.select(:category_id, @categories, {include_blank: 'None'})
       p
         = f.label :shop_price
         = f.text_field :shop_price

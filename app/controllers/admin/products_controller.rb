@@ -10,6 +10,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def new
     @product = Product.new
+    @categories = Category.all.map {|c| [c.name, c.id] }
     @product.pictures.build
   end
 
@@ -24,6 +25,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def edit
+    @categories = Category.all.map {|c| [c.name, c.id] }
   end
 
   def update

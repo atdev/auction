@@ -1,17 +1,5 @@
 h4 Categories
 
-/Button to trigger modal
-/table.table
-  - for c in @cat_roots
-    tr
-      td
-        a href="#" = c.name
-      td
-        = link_to "Edit", edit_admin_category_path(c)
-      td
-        = link_to "Delete", admin_category_path(c), method: "delete", data: { confirm: "You sure?" }
-      /td
-      /  button.add_subcategory add subcategory
 = render 'categories_list'
 
 
