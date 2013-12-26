@@ -13,16 +13,9 @@ div class="row"
         = f.label :shop_price
         = f.text_field :shop_price
       p
-        = f.fields_for :pictures do |p|
-          div.pictures_box
-            p
-              = p.label :image
-              = p.file_field :image
-            p
-              = p.hidden_field :_destroy
-              = link_to "Remove Image", "#",class: "remove_images"
-      p
-        = f.link_to_add "Add a picture", :pictures, :data => { :target => "#pictures" }
+        = f.fields_for :pictures do |builder|
+          = render "picture_block", f: builder
+        = link_to_add_fields "Add a picture", f, :pictures
       p
         = f.label :description
         = f.text_field :description

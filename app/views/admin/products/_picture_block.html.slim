@@ -1,0 +1,5 @@
+div.picture_block
+  = f.label :image
+  = f.file_field :image
+  = f.hidden_field :_destroy
+  = link_to "Remove Image", "#",class: "remove_images"
