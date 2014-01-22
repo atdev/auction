@@ -16,6 +16,7 @@ group :test do
   gem 'capybara', '2.1.0'
   gem 'shoulda-matchers'
   gem 'launchy'
+  gem 'factory_girl_rails'
 end
 
 gem 'devise'
@@ -23,6 +24,7 @@ gem 'ancestry'
 gem 'slim-rails'
 gem 'carrierwave'
 gem 'nested_form'
+gem 'enumify'
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.1'
 

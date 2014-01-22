@@ -1,0 +1,18 @@
+h4 List of Lots
+
+table.table
+  - for l in @lots
+    tr
+      td
+        = link_to l.name, admin_lot_path(l)
+      td
+        = l.category.name
+      td
+        = l.min_bet
+      td
+        = link_to "Edit", edit_admin_lot_path(l)
+      td
+        = link_to "Delete", admin_lot_path(l), method: "delete", data: { confirm: "You sure?" }, class: 'delete_link'
+
+
+

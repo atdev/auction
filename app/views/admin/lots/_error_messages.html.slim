@@ -1,0 +1,8 @@
+-if @lot.errors.any?
+    div id="error_explanation"
+      div class="alert alert-error"
+        |The form contains #{pluralize(@lot.errors.count, "error")}.
+      ul
+        - @lot.errors.full_messages.each do |msg|
+            li = "*#{msg}"
+

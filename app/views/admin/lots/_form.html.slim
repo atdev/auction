@@ -1,0 +1,22 @@
+div class="row"
+  div class="span6 offset3"
+    = form_for [:admin, @lot] do |f|
+      p
+        = render 'error_messages'
+      p
+        = f.label :product
+        = f.select(:product_id, Product.all.map {|p| [p.name, p.id]}, {include_blank: 'None'})
+      p
+        = f.label :min_bet
+        = f.text_field :min_bet
+      p
+        = f.label :time_step
+        = f.text_field :time_step
+
+      p
+        - if @lot.new_record?
+          = f.submit "Create the lot", class: "btn btn-large btn-primary"
+        - else
+          = f.submit "Edit the lot", class: "btn btn-large btn-primary"
+
+

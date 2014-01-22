@@ -5,7 +5,7 @@ Auction::Application.routes.draw do
   get 'admin' => 'admin/categories#index'
 
   namespace :admin do
-    resources :products, :categories
+    resources :products, :categories, :lots
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

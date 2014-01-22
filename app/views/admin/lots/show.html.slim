@@ -1,0 +1,13 @@
+div class="row"
+  aside class="span4"
+    section
+      h1
+        = @lot.name
+      p
+        |min bet = #{@lot.min_bet}
+      p
+        - if @lot.pictures
+          - @lot.pictures.each do |p|
+              p= image_tag p.image
+        - else
+          p The Lot has no image

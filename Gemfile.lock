@@ -58,8 +58,14 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    enumify (0.0.5)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.3.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.3.0)
+      factory_girl (~> 4.3.0)
+      railties (>= 3.0.0)
     ffi (1.9.3)
     hike (1.2.3)
     i18n (0.6.9)
@@ -182,6 +188,8 @@ DEPENDENCIES
   carrierwave
   coffee-rails (= 4.0.1)
   devise
+  enumify
+  factory_girl_rails
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   launchy

@@ -8,7 +8,7 @@ table.table
       td
         = link_to "Edit", edit_admin_product_path(p)
       td
-        = link_to "Delete", admin_product_path(p), method: "delete", data: { confirm: "You sure?" }
+        = link_to "Delete", admin_product_path(p), method: "delete", data: { confirm: "You sure?" }, class: 'delete_link'
 
 
 

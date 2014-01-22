@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131225105319) do
+ActiveRecord::Schema.define(version: 20140120222448) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20131225105319) do
   end
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry"
+
+  create_table "lots", force: true do |t|
+    t.integer  "product_id"
+    t.decimal  "min_bet"
+    t.integer  "time_step"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+  end
 
   create_table "pictures", force: true do |t|
     t.string   "name"
