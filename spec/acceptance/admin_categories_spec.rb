@@ -33,7 +33,7 @@ feature "Admin manage categories", %q{
       visit new_admin_category_path
       fill_in 'category_name', with: 'category_test_1'
       click_on 'Create the category'
-      page.should have_content 'Category created'
+      page.should have_content 'Category was successfully created'
       page.should have_content 'category_test_1'
     end
 
@@ -48,7 +48,7 @@ feature "Admin manage categories", %q{
       visit edit_admin_category_path(category)
       fill_in 'category_name', with: 'category_test_1'
       click_on 'Edit the category'
-      page.should have_content 'Category updated'
+      page.should have_content 'Category was successfully updated'
     end
 
     scenario "Admin tries to delete the category" do

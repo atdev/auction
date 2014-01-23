@@ -25,6 +25,8 @@ gem 'slim-rails'
 gem 'carrierwave'
 gem 'nested_form'
 gem 'enumify'
+gem 'inherited_resources'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.1'
 
