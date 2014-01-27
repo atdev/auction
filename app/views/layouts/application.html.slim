@@ -1,0 +1,67 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "Auction"
+    = csrf_meta_tags
+
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "application"
+
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse" type="button"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand href="#"
+          .nav-collapse.collapse
+            ul.nav
+              li.active
+                a href="#"
+                  |Home
+              li
+                a href="#about"
+                  |About
+              li
+                a href="#contact"
+                  |Contact
+            p.navbar-text.pull-right
+              - if user_signed_in?
+                |Logged in as
+                strong = current_user.email
+                = link_to "Edit profile", edit_user_registration_path, class:'navbar-link'
+                ||
+                = link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'
+              - else
+                = link_to "Sign up", new_user_registration_path, class: 'navbar-link'
+                ||
+                = link_to "Login", new_user_session_path, class:  'navbar-link'
+
+    .container-fluid
+      .row-fluid
+        .span3
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Sidebar
+              li.active
+                a href="#" Link
+              li
+                a href="#" Link
+              li
+                a href="#" Link
+        == yield
+
+
+      hr
+      footer
+        p
+          | &copy; Auction 2013-2014

@@ -1,0 +1,58 @@
+.span9
+  .hero-unit
+    h1 Auction!
+    p
+      |This is a template for a simple marketing or informational website.
+      |It includes a large callout called the hero unit and three supporting pieces of content.
+      |Use it as a starting point to create something more unique.
+    p
+      = link_to "Learn more", '#', class: 'btn btn-primary btn-large'
+
+  .row-fluid
+    - @lots.limit(3).each do |l|
+      .span4
+        H2 = l.name
+        p = l.category.name
+        - if l.pictures.size>0
+          p= image_tag l.pictures.first.image
+        = link_to "View details", '#', class: 'btn'
+
+  .row-fluid
+    - @lots.offset(3).limit(3).each do |l|
+      .span4
+        H2 = l.name
+        p = l.category.name
+        - if l.pictures.size>0
+          p= image_tag l.pictures.first.image
+        = link_to "View details", '#', class: 'btn'
+
+  .row-fluid
+    .span4
+      h2 Heading
+      p
+        |Donec id elit non mi porta gravida at eget metus.
+        |Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+        |ut fermentum massa justo sit amet risus.
+        |Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+      p
+        = link_to "View details", '#', class: 'btn'
+
+    .span4
+      h2 Heading
+      p
+        |Donec id elit non mi porta gravida at eget metus.
+        |Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+        |ut fermentum massa justo sit amet risus.
+        |Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+      p
+        = link_to "View details", '#', class: 'btn'
+
+    .span4
+      h2 Heading
+      p
+        |Donec id elit non mi porta gravida at eget metus.
+        |Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+        |ut fermentum massa justo sit amet risus.
+        |Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+      p
+        = link_to "View details", '#', class: 'btn'
