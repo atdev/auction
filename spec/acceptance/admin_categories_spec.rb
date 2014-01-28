@@ -32,9 +32,12 @@ feature "Admin manage categories", %q{
     scenario "Admin tries to create the root category saccessfully" do # to create sub category needed
       visit new_admin_category_path
       fill_in 'category_name', with: 'category_test_1'
+      attach_file 'category_picture_attributes_image', 'spec/support/files/test_image.jpg'
       click_on 'Create the category'
       page.should have_content 'Category was successfully created'
       page.should have_content 'category_test_1'
+      image_src = Category.last().picture.image.to_s
+      find('img')['src'].include?(image_src).should be_true
     end
 
     scenario "Admin tries to create the category with invalid params" do
