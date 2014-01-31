@@ -1,0 +1,5 @@
+ul
+  - children.each do |c|
+    li id="#{c.id}"
+      = link_to "#{c.name}", admin_category_path(c.id), remote: true
+      = jstree_sub_items(c)

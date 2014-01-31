@@ -1,6 +1,6 @@
 div class="row"
   div class="span6 offset3"
-    = form_for [:admin, resource] do |f|
+    = nested_form_for [:admin, @category] do |f|
       p
         = render 'error_messages'
       p
@@ -11,9 +11,14 @@ div class="row"
           p
             = p.label :image
             = p.file_field :image
+          - if @category.picture
+            .picture_block
+              p= image_tag p.object.image.thumb
+              = p.hidden_field :_destroy
+              = link_to "Remove Img", "#", class: "remove_image"
       = f.hidden_field :parent_id
       p
-        - if resource.new_record?
+        - if @category.new_record?
           = f.submit "Create the category", class: "btn btn-large btn-primary"
         - else
           = f.submit "Edit the category", class: "btn btn-large btn-primary"

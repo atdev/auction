@@ -1,12 +1,12 @@
 div class="row"
   aside class="span4"
     section
+      p
+        = link_to "Edit", edit_admin_category_path(@category), class: 'btn'
       h4
         = @category.name
-      - if @category.picture
-        p= image_tag @category.picture.image
-      - else
-        p The Category has no image
+      = render "picture"
+
 
 = render 'breadcrumbs'
-= render 'categories_list'
+= render 'list'

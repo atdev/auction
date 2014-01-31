@@ -1,0 +1,6 @@
+.picture_block
+  .image_content
+    - if @category.picture
+      p= image_tag @category.picture.image.thumb
+    - else
+      p The Category has no image

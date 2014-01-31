@@ -1,0 +1,6 @@
+$('.form').html('<%= j render "category_form"%>')
+
+<% if @category.errors.empty? %>
+  $('.list').html('<%= j render "categories_list" %>');
+  $('.form input[type=text]').val('');
+<% end %>

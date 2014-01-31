@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 feature "Admin manage products", %q{
-    In order to manage products
+    In order to add products to auctions
     As an admin
-    I want to get list of products
-    ...
+    I want to manage products
   } do
 
   context "Admin" do

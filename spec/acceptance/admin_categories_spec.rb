@@ -1,10 +1,10 @@
-require 'spec_helper'
+#require 'spec_helper'
+require 'acceptance/acceptance_helper'
 
 feature "Admin manage categories", %q{
-    In order to manage categories
+    In order to be able to classify products
     As an admin
-    I want to get list of categories
-    ....
+    I want to manage categories
   } do
 
   context "Admin" do
@@ -23,20 +23,35 @@ feature "Admin manage categories", %q{
       end
     end
 
-    scenario "Admin tries to see the category" do # to see sub category needed
+    scenario "Admin tries to see the category" do
       category = Category.first
       visit admin_category_path(category)
       page.should have_content category.name
     end
 
-    scenario "Admin tries to create the root category saccessfully" do # to create sub category needed
+    scenario "Admin tries to create the root category saccessfully" do
       visit new_admin_category_path
       fill_in 'category_name', with: 'category_test_1'
-      attach_file 'category_picture_attributes_image', 'spec/support/files/test_image.jpg'
+      attach_file 'Image', 'spec/support/files/test_image.jpg'
       click_on 'Create the category'
-      page.should have_content 'Category was successfully created'
+      page.should have_content 'Category created'
       page.should have_content 'category_test_1'
-      image_src = Category.last().picture.image.to_s
+      image_src = Category.last().picture.image.thumb.to_s
+      find('img')['src'].include?(image_src).should be_true
+    end
+
+    scenario "Admin tries to create the sub category for the root category" do
+      visit admin_categories_path
+      @root_category = find('.table').first('.category')
+      @root_category.click
+      click_on 'Add Subcategory'
+      fill_in 'category_name', with: 'sub_category_test_1'
+      attach_file 'Image', 'spec/support/files/test_image.jpg'
+      click_on 'Create the category'
+      page.should have_content 'Category created'
+      page.should have_content @root_category.text
+      page.should have_content 'sub_category_test_1'
+      image_src = Category.last().picture.image.thumb.to_s
       find('img')['src'].include?(image_src).should be_true
     end
 
@@ -51,12 +66,16 @@ feature "Admin manage categories", %q{
       visit edit_admin_category_path(category)
       fill_in 'category_name', with: 'category_test_1'
       click_on 'Edit the category'
-      page.should have_content 'Category was successfully updated'
+      page.should have_content 'Category updated'
     end
-
-    scenario "Admin tries to delete the category" do
-      visit admin_categories_path
-      expect { page.first(".delete_link").click }.to change(Category, :count).by(-1)
+    describe "js", js: true do
+      scenario "Admin tries to delete the category" do
+        visit admin_categories_path
+        page.first(".delete_link").click
+        page.driver.browser.switch_to.alert.accept
+        page.should have_content 'Category deleted'
+        #expect { page.first(".delete_link").click }.to change(Category, :count).by(-1)
+      end
     end
   end
 end

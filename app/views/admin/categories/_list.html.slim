@@ -2,13 +2,12 @@ table.table
   - for c in @categories
     tr
       td
-        = link_to c.name, admin_category_path(c)
+        = link_to c.name, admin_category_path(c), class: 'category'
       td
         = link_to "Edit", edit_admin_category_path(c)
       td
         = link_to "Delete", admin_category_path(c), method: "delete", data: { confirm: "You sure?" }, class: 'delete_link'
-      /td
-      /  button.add_subcategory add subcategory
+
 
 
 

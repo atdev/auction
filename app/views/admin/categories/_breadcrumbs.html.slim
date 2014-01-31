@@ -3,11 +3,11 @@ ul.breadcrumb
     = link_to "categories", admin_categories_path
     span.divider
       |/
-  - for a in resource.ancestors
+  - for a in @category.ancestors
     li
       = link_to a.name, admin_category_path(a)
       span.divider
         |/
-  li.active = resource.name
+  li.active = @category.name
 
 

@@ -34,7 +34,7 @@ feature "Admin logging in to admin area", %q{
   scenario "Non-admin tries to get access to admin area" do
     User.create!(email: 'user@test.com', password: '12345678', password_confirmation: '12345678', is_admin: false)
     visit new_user_session_path
-    sign_in_with 'admin@test.com', '12345678'
+    sign_in_with 'user@test.com', '12345678'
     visit admin_products_path
     current_path.should == root_path
     page.should have_content "You must be logged in as admin to access this section"

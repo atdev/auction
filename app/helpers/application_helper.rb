@@ -7,4 +7,10 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_field", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def jstree_sub_items(item)
+    if item.has_children?
+      render "jstree_sub", children: item.children
+    end
+  end
 end
