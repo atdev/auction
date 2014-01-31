@@ -1,4 +1,3 @@
-#require 'spec_helper'
 require 'acceptance/acceptance_helper'
 
 feature "Admin manage categories", %q{
@@ -68,13 +67,22 @@ feature "Admin manage categories", %q{
       click_on 'Edit the category'
       page.should have_content 'Category updated'
     end
+
     describe "js", js: true do
       scenario "Admin tries to delete the category" do
         visit admin_categories_path
-        page.first(".delete_link").click
+        page.first('.delete_link').click
         page.driver.browser.switch_to.alert.accept
         page.should have_content 'Category deleted'
-        #expect { page.first(".delete_link").click }.to change(Category, :count).by(-1)
+      end
+
+      scenario "Admin tries to go to the category's page by using jstree menu" do
+        visit admin_categories_path
+        first_category = Category.first
+        within "#jstree_div" do
+          click_on first_category.name
+        end
+        page.should have_selector('h4', text: first_category.name)
       end
     end
   end
