@@ -1,0 +1,22 @@
+li.span4
+  .thumbnail
+    p
+      = '#'+l.id.to_s
+      | &nbsp
+      = link_to l.name, lots_path(l)
+    a.image-container
+      - if l.pictures.count > 0
+        = image_tag l.pictures.first.image, width: 160
+      - else
+        = image_tag image_path('support/no_image.jpg'), width: 160
+    .caption
+      h5 23:47
+      p last bet: Username
+      h4
+        a.btn href='#{lot_path(l)}'
+          i.icon-zoom-in
+        a.btn.btn-success
+          |Bet
+
+        a.btn.btn-primary
+          |$222.00

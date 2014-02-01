@@ -15,57 +15,15 @@ html lang="en"
     = javascript_include_tag "application"
 
   body
-    .navbar.navbar-inverse.navbar-fixed-top
-      .navbar-inner
-        .container-fluid
-          button.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse" type="button"
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.brand href="#"
-          .nav-collapse.collapse
-            ul.nav
-              li.active
-                a href="#"
-                  |Home
-              li
-                a href="#about"
-                  |About
-              li
-                a href="#contact"
-                  |Contact
-            p.navbar-text.pull-right
-              - if user_signed_in?
-                |Logged in as
-                strong = current_user.email
-                = link_to "Edit profile", edit_user_registration_path, class:'navbar-link'
-                ||
-                = link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'
-              - else
-                = link_to "Sign up", new_user_registration_path, class: 'navbar-link'
-                ||
-                = link_to "Login", new_user_session_path, class:  'navbar-link'
-
-    .container-fluid
+    = render 'shared/header'
+    = render 'shared/logoarea'
+    .container
       .row-fluid
-        .span3
-          .well.sidebar-nav
-            ul.nav.nav-list
-              li.nav-header Sidebar
-              li.active
-                a href="#" Link
-              li
-                a href="#" Link
-              li
-                a href="#" Link
-
-        p class="notice"
-          = notice
-        p class="alert"
-          = alert
-        == yield
-
-
+        = render 'shared/sidebar'
+        .span9
+          = render 'shared/notice_alert.html.slim'
+          = render 'shared/breadcrumb.html.slim'
+          == yield
       hr
       footer
         p

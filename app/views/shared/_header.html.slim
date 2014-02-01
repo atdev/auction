@@ -1,0 +1,31 @@
+#header
+  .container
+    #welcomeLine.row
+      .span6
+        span.navbar-text
+          - if user_signed_in?
+            |Logged in as
+            strong = current_user.email
+            = link_to "Edit profile", edit_user_registration_path, class:'navbar-link'
+            ||
+            = link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'
+          - else
+            = link_to "Sign up", new_user_registration_path, class: 'navbar-link'
+            ||
+            = link_to "Login", new_user_session_path, class:  'navbar-link'
+      .plull-right-content
+        .pull-right
+          a href="product_summary.html"
+            span Fr
+          a href="product_summary.html"
+            span Es
+          span.btn.btn-mini En
+          a href="product_summary.html"
+            span £
+          span.btn.btn-mini $155.00
+          a href="product_summary.html"
+            span $
+          a href="product_summary.html"
+            span.btn.btn-mini.btn-primary
+              i.icon-shopping-cart.icon-white
+              | [ 3 ] Itemes in your cart

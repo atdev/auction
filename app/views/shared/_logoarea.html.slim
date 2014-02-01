@@ -1,0 +1,44 @@
+#logoArea.navbar
+  a#smallScreen.btn.btn-navbar data-target="#topMenu" data-toggle="collapse"
+    span.icon-bar
+    span.icon-bar
+    span.icon-bar
+  .navbar-inner
+    a.brand href="#{lots_path}"
+      img alt="Bootsshop" src="#{image_path('pic/logo.png')}"
+    form.form-inline.navbar-search action="products.html" method="post"
+      input#srchFld.srchTxt type="text"
+        select.srchTxt
+          option All
+          option CLOTHES
+          option FOOD AND BEVERAGES
+          option HEALTH &amp; BEAUTY
+          option SPORTS &amp; LEISURE
+          option BOOKS &amp; ENTERTAINMENTS
+        button#submitButton.btn.btn-primary type="submit" Go
+    ul#topMenu.nav.pull-right
+      li
+        a href="special_offer.html" Specials Offer
+      li
+        a href="normal.html" Delivery
+      li
+        a href="contact.html" Contact
+      li
+        a data-toggle="modal" href="#login" role="button" style="padding-right:0"
+          span.btn.btn-large.btn-success Login
+        #login.modal.hide.fade.in aria-hidden="false" aria-labelledby="login" role="dialog" tabindex="-1"
+          .modal-header
+            button.close aria-hidden="true" data-dismiss="modal" type="button"
+            h3 Login Block
+          .modal-body
+            form.form-horizontal.loginFrm
+              .control-group
+                input#inputEmail placeholder="Email" type="text"
+              .control-group
+                input#inputPassword placeholder="Password" type="password"
+              .control-group
+                label.checkbox
+                  input type="checkbox"
+                    | Remember me
+            button.btn.btn-success type="submit"
+            button.btn aria-hidden="true" data-dismiss="modal"

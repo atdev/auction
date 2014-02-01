@@ -28,6 +28,8 @@ gem 'carrierwave'
 gem 'nested_form'
 gem 'enumify'
 gem 'inherited_resources'
+gem 'will_paginate', '3.0.4'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.1'
