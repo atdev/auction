@@ -71,7 +71,7 @@ feature "Admin manage categories", %q{
     describe "js", js: true do
       scenario "Admin tries to delete the category" do
         visit admin_categories_path
-        page.first('.delete_link').click
+        page.first('.delete_link').click # CLICK_ON BUTTON NAME
         page.driver.browser.switch_to.alert.accept
         page.should have_content 'Category deleted'
       end
@@ -82,7 +82,7 @@ feature "Admin manage categories", %q{
         within "#jstree_div" do
           click_on first_category.name
         end
-        page.should have_selector('h4', text: first_category.name)
+        page.should have_selector('h4', text: first_category.name) # have_selector. title h4.title
       end
     end
   end
