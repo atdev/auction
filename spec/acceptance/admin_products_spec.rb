@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'acceptance/acceptance_helper'
 
 feature "Admin manage products", %q{
     In order to add products to auctions
@@ -34,10 +34,10 @@ feature "Admin manage products", %q{
     scenario "Admin tries to create the product saccessfully" do
       visit new_admin_product_path
       category = Category.first
-      select category.name, from: 'product_category_id'
-      fill_in 'product_name', with: 'product_test_1'
-      fill_in 'product_shop_price', with: 60
-      fill_in 'product_description', with: 'description for product_test_1'
+      select category.name, from: 'Category'
+      fill_in 'Name', with: 'product_test_1'
+      fill_in 'Shop price', with: 60
+      fill_in 'Description', with: 'description for product_test_1'
       click_on 'Create the product'
       page.should have_content 'Product created'
       page.should have_content 'product_test_1'
@@ -52,7 +52,7 @@ feature "Admin manage products", %q{
     scenario "Admin tries to edit the product saccessfully" do
       product = Product.first
       visit edit_admin_product_path(product)
-      fill_in 'product_name', with: 'product_test_333'
+      fill_in 'Name', with: 'product_test_333'
       click_on 'Edit the product'
       page.should have_content 'Product updated'
       page.should have_content 'product_test_333'

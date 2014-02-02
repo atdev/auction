@@ -7,7 +7,7 @@ div class="row"
         = f.label :name
         = f.text_field :name
       p
-        = f.label :category
+        = f.label :category_id
         = f.select(:category_id, Category.all.map {|c| [c.name, c.id] }, {include_blank: 'None'})
       p
         = f.label :shop_price
