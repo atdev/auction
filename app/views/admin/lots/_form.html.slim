@@ -4,7 +4,7 @@ div class="row"
       p
         = render 'error_messages'
       p
-        = f.label :product
+        = f.label :product_id
         = f.select(:product_id, Product.all.map {|p| [p.name, p.id]}, {include_blank: 'None'})
       p
         = f.label :min_bet

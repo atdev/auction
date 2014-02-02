@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'acceptance/acceptance_helper'
 
 feature "Admin manage lots", %q{
     In order to sell products from auctions
@@ -35,9 +35,9 @@ feature "Admin manage lots", %q{
     scenario "Admin tries to create the lot saccessfully" do
       visit new_admin_lot_path
       product = Product.first
-      select product.name, from: 'lot_product_id'
-      fill_in 'lot_min_bet', with: 22
-      fill_in 'lot_time_step', with: 60
+      select product.name, from: 'Product'
+      fill_in 'Min bet', with: 22
+      fill_in 'Time step', with: 60
       click_on 'Create the lot'
       page.should have_content 'Lot created'
       page.should have_content 'min bet = 22'
@@ -46,9 +46,9 @@ feature "Admin manage lots", %q{
     scenario "Admin tries to create the lot with invalid params" do
       visit new_admin_lot_path
       product = Product.first
-      select product.name, from: 'lot_product_id'
-      fill_in 'lot_min_bet', with: 0
-      fill_in 'lot_time_step', with: 0
+      select product.name, from: 'Product'
+      fill_in 'Min bet', with: 0
+      fill_in 'Time step', with: 0
       click_on 'Create the lot'
       page.should have_css '#error_explanation'
     end
@@ -56,7 +56,7 @@ feature "Admin manage lots", %q{
     scenario "Admin tries to edit the lot saccessfully" do
       lot = Lot.first
       visit edit_admin_lot_path(lot)
-      fill_in 'lot_min_bet', with: lot.min_bet+1
+      fill_in 'Min bet', with: lot.min_bet+1
       click_on 'Edit the lot'
       page.should have_content 'Lot updated'
     end
