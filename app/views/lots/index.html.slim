@@ -1,8 +1,6 @@
 .span12
   h4 Latest Auctions
-  ul.thumbnails
-    - @lots.each do |l|
-      = render 'thumbnail', l:l
+  = render 'thumbnail'
     /
       li.span4
         .thumbnail
@@ -26,8 +24,8 @@
 
               a.btn.btn-primary
                 |$222.00
-
-= will_paginate @lots
+= paginate @lots
+/= will_paginate @lots
   hr
   .lots-info
       h1 Auction!

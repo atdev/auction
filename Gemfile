@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 #gem 'bootstrap-sass', '2.3.2.0'
-gem 'twitter-bootstrap-rails'
+#gem 'twitter-bootstrap-rails'
 gem 'bcrypt-ruby', '3.1.2'
 
 group :development, :test do
@@ -28,7 +28,8 @@ gem 'carrierwave'
 gem 'nested_form'
 gem 'enumify'
 gem 'inherited_resources'
-gem 'will_paginate', '3.0.4'
+gem 'kaminari'
+#gem 'will_paginate', '3.0.4'
 
 
 # Use SCSS for stylesheets
