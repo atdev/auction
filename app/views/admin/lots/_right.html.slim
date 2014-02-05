@@ -1,4 +1,13 @@
-.span3
+.col-lg-4
+  .well.sidebar-nav
+    p
+      = link_to "Add Lot", new_admin_lot_path, class: "btn btn-small btn-primary"
+
+    ul.nav.nav-list
+      li.nav-header
+
+    /= render 'jstree'
+/.span3
   .well.sidebar-nav
     p
       = link_to "Add Lot", new_admin_lot_path, class: "btn btn-small btn-primary"

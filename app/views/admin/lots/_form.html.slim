@@ -1,22 +1,32 @@
-div class="row"
-  div class="span6 offset3"
-    = form_for [:admin, @lot] do |f|
-      p
-        = render 'error_messages'
-      p
-        = f.label :product_id
-        = f.select(:product_id, Product.all.map {|p| [p.name, p.id]}, {include_blank: 'None'})
-      p
-        = f.label :min_bet
-        = f.text_field :min_bet
-      p
-        = f.label :time_step
-        = f.text_field :time_step
+div.row
+  .col-lg-7
+    .panel.panel-default
+      .panel-heading
+        .category_title
+          - if @lot.new_record?
+            | Create new lot
+          - else
+            = "Edit "+@lot.name
+      .panel-body
+        = form_for [:admin, @lot] do |f|
+          .form-group
+            = render 'error_messages'
+          .form-group
+            = f.label :product_id
+            = f.select :product_id, Product.all.map {|p| [p.name, p.id]}, {include_blank: 'None'}, class: 'form-control'
+          .form-group
+            = f.label :min_bet
+            = f.text_field :min_bet, class: 'form-control'
+          .form-group
+            = f.label :time_step
+            = f.text_field :time_step, class: 'form-control'
 
-      p
-        - if @lot.new_record?
-          = f.submit "Create the lot", class: "btn btn-large btn-primary"
-        - else
-          = f.submit "Edit the lot", class: "btn btn-large btn-primary"
+          .form-group
+            - if @lot.new_record?
+              = f.submit "Create the lot", class: "btn btn-large btn-primary"
+            - else
+              = f.submit "Edit the lot", class: "btn btn-large btn-primary"
+              | &nbsp
+              = link_to "Show", admin_lot_path(@lot), class: 'btn btn-primary'
 
 
