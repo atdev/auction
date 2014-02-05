@@ -1,0 +1,29 @@
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        - if defined?(title_list)
+          = title_list
+      .panel-body
+        .table-responsive
+          table#dataTables.table.table-striped.table-bordered.table-hover
+            thead
+              tr
+                th Id
+                th Name
+                th Shop Price
+                th
+                th
+            tbody
+              - for p in @products
+                tr
+                  td
+                    = p.id
+                  td
+                    = link_to p.name, admin_product_path(p), class: 'product'
+                  td
+                    = p.shop_price.to_s
+                  td.center
+                    = link_to "Edit", edit_admin_product_path(p)
+                  td.center
+                    = link_to "Delete", admin_product_path(p), method: "delete", data: { confirm: "You sure?" }, class: 'delete_link'

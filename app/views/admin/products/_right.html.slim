@@ -1,10 +1,12 @@
-.span3
+.col-lg-4
   .well.sidebar-nav
     p
       = link_to "Add Product", new_admin_product_path, class: "btn btn-small btn-primary"
+
     ul.nav.nav-list
       li.nav-header
-      li= link_to "Link 1", "/path1"
+
+    /= render 'jstree'
 
 
 

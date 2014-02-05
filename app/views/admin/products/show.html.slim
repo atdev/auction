@@ -1,11 +1,16 @@
-div class="row"
-  aside class="span4"
-    section
-      h1
-        = @product.name
-      p
+= render 'breadcrumbs'
+.row
+  .col-lg-5
+    .panel.panel-default
+      .panel-heading
+        .category_title
+          = @product.name
+      .panel-body
         - if @product.pictures
           - @product.pictures.each do |p|
-              p= image_tag p.image
+            = render 'picture', f:p
         - else
           p The Product has no image
+      .panel-footer
+        = link_to "Edit", edit_admin_product_path(@product), class: 'btn btn-primary'
+

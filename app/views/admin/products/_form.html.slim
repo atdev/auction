@@ -1,0 +1,40 @@
+.row
+  .col-lg-8
+    .panel.panel-default
+      .panel-heading
+        .category_title
+          - if @product.new_record?
+            | Create new product
+          - else
+            = "Edit "+@product.name
+      .panel-body
+        = nested_form_for [:admin, @product], class:'form' do |f|
+          .control-group
+            = render 'error_messages'
+          .control-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+          .control-group
+            = f.label :category_id
+            = f.select :category_id, Category.all.map {|c| [c.name, c.id] }, {include_blank: 'None'}, class: 'form-control'
+          .control-group
+            = f.label :shop_price
+            = f.text_field :shop_price, class: 'form-control'
+          .control-group
+            = f.label :description
+            = f.text_area :description, size: '40x5'
+          .control-group
+            br
+            = f.fields_for :pictures do |builder|
+              = render "picture_block", f: builder
+            = link_to_add_fields "Add a picture", f, :pictures
+
+          .control-group
+            - if @product.new_record?
+              = f.submit "Create the product", class: "btn btn-large btn-primary"
+            - else
+              = f.submit "Edit the product", class: "btn btn-large btn-primary"
+              | &nbsp
+              = link_to "Show", admin_product_path(@product), class: 'btn btn-primary'
+
+
