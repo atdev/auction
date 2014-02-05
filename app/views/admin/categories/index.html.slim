@@ -1,7 +1,86 @@
-h4 Categories
 
+/h4 Categories
+/
 .list
-  = render 'list'
+  = render 'list', title_list: 'categories'
+
+/.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        | DataTables Advanced Tables
+      /! /.panel-heading
+      .panel-body
+        .table-responsive
+          table#dataTables-example.table.table-striped.table-bordered.table-hover
+            thead
+              tr
+                th Rendering engine
+                th Browser
+                th Platform(s)
+                th Engine version
+                th CSS grade
+            tbody
+              tr.odd.gradeX
+                td Trident
+                td Internet Explorer 4.0
+                td Win 95+
+                td.center 4
+                td.center X
+              tr.even.gradeC
+                td Trident
+                td Internet Explorer 5.0
+                td Win 95+
+                td.center 5
+                td.center C
+              tr.odd.gradeA
+                td Trident
+                td Internet Explorer 5.5
+                td Win 95+
+                td.center 5.5
+                td.center A
+              tr.even.gradeA
+                td Trident
+                td Internet Explorer 6
+                td Win 98+
+                td.center 6
+                td.center A
+              tr.odd.gradeA
+                td Trident
+                td Internet Explorer 7
+                td Win XP SP2+
+                td.center 7
+                td.center A
+              tr.odd.gradeA
+                td Trident
+                td Internet Explorer 7
+                td Win XP SP2+
+                td.center 7
+                td.center A
+              tr.odd.gradeA
+                td Trident
+                td Internet Explorer 7
+                td Win XP SP2+
+                td.center 7
+                td.center A
+              tr.odd.gradeA
+                td Trident
+                td Internet Explorer 7
+                td Win XP SP2+
+                td.center 7
+                td.center A
+              tr.odd.gradeA
+                td Trident
+                td Internet Explorer 7
+                td Win XP SP2+
+                td.center 7
+                td.center A
+
+        /! /.table-responsive
+
+      /! /.panel-body
+    /! /.panel
+  /! /.col-lg-12
 
 
 

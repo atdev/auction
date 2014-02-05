@@ -1,13 +1,32 @@
-table.table
-  - for c in @categories
-    tr
-      td
-        = link_to c.name, admin_category_path(c), class: 'category'
-      td
-        = link_to "Edit", edit_admin_category_path(c)
-      td
-        = link_to "Delete", admin_category_path(c), method: "delete", data: { confirm: "You sure?" }, class: 'delete_link'
-
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        - if defined?(title_list)
+          = title_list
+      .panel-body
+        .table-responsive
+          table#dataTables.table.table-striped.table-bordered.table-hover
+            thead
+              tr
+                th Id
+                th Name
+                th Subcategories count
+                th
+                th
+            tbody
+              - for c in @categories
+                tr
+                  td
+                    = c.id
+                  td
+                    = link_to c.name, admin_category_path(c), class: 'category'
+                  td
+                    = c.children.size
+                  td.center
+                    = link_to "Edit", edit_admin_category_path(c)
+                  td.center
+                    = link_to "Delete", admin_category_path(c), method: "delete", data: { confirm: "You sure?" }, class: 'delete_link'
 
 
 

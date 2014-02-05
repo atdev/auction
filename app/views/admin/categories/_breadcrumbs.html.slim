@@ -2,12 +2,10 @@ ul.breadcrumb
   li
     = link_to "categories", admin_categories_path
     span.divider
-      |/
   - for a in @category.ancestors
     li
       = link_to a.name, admin_category_path(a)
       span.divider
-        |/
   li.active = @category.name
 
 

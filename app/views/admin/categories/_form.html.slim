@@ -1,25 +1,36 @@
-div class="row"
-  div class="span6 offset3"
-    = nested_form_for [:admin, @category] do |f|
-      p
-        = render 'error_messages'
-      p
-        = f.label :name
-        = f.text_field :name
-      p
-        = f.fields_for :picture do |p|
-          p
-            = p.label :image
-            = p.file_field :image
-          - if @category.picture
-            .picture_block
-              p= image_tag p.object.image.thumb
-              = p.hidden_field :_destroy
-              = link_to "Remove Img", "#", class: "remove_image"
-      = f.hidden_field :parent_id
-      p
-        - if @category.new_record?
-          = f.submit "Create the category", class: "btn btn-large btn-primary"
-        - else
-          = f.submit "Edit the category", class: "btn btn-large btn-primary"
+div.row
+  .col-lg-7
+    .panel.panel-default
+      .panel-heading
+        .category_title
+          - if @category.new_record?
+            | Create new category
+          - else
+            = "Edit "+@category.name
+      .panel-body
+        = nested_form_for [:admin, @category] do |f|
+          .form-group
+            = render 'error_messages'
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.fields_for :picture do |p|
+              p
+                = p.label :image
+                = p.file_field :image
+              - if @category.picture
+                .picture_block
+                  p= image_tag p.object.image.thumb
+                  = p.hidden_field :_destroy
+                  = link_to "Remove Img", "#", class: "remove_image btn btn-danger"
+          = f.hidden_field :parent_id
+          .form-group
+            - if @category.new_record?
+              = f.submit "Create the category", class: "btn btn-primary"
+            - else
+              = f.submit "Edit the category", class: "btn btn-primary"
+              | &nbsp
+              = link_to "Show", admin_category_path(@category), class: 'btn btn-primary'
+
 

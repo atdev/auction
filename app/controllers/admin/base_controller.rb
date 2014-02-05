@@ -1,6 +1,6 @@
 class Admin::BaseController < ActionController::Base
   before_action :require_admin
-  layout "admin"
+  layout "sb_admin2"
 
   private
     def require_admin

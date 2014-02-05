@@ -1,12 +1,13 @@
-div class="row"
-  aside class="span4"
-    section
-      p
-        = link_to "Edit", edit_admin_category_path(@category), class: 'btn'
-      h4 class='category_title'
-        = @category.name
-      = render "picture"
-
-
 = render 'breadcrumbs'
-= render 'list'
+.row
+  .col-lg-5
+    .panel.panel-default
+      .panel-heading
+        .category_title
+          = @category.name
+      .panel-body
+        = render "picture"
+      .panel-footer
+        = link_to "Edit", edit_admin_category_path(@category), class: 'btn btn-primary'
+
+= render 'list', title_list: "Subcategories"
