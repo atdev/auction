@@ -20,6 +20,15 @@ div.row
           .form-group
             = f.label :time_step
             = f.text_field :time_step, class: 'form-control'
+          .form-group
+            = f.label :time_end
+            = f.text_field :time_end, class: 'form-control', readonly: true
+          .form-group
+            = f.label :status
+            = f.text_field :status, class: 'form-control', readonly: true
+          .form-group
+            = f.label :bet_step
+            = f.text_field :bet_step, class: 'form-control'
 
           .form-group
             - if @lot.new_record?

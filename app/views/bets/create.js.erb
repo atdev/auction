@@ -1,0 +1,4 @@
+<% publish_to '/lots/update' do %>
+  $('#lot_' + <%=@bet.lot.id%> + ' .time_end').html('<%= j @bet.lot.time_end.to_formatted_s(:db)%>')
+<% end %>
+

@@ -8,7 +8,10 @@ Auction::Application.routes.draw do
     resources :products, :categories, :lots
   end
 
-  resources :lots
+  resources :lots, only: [:index, :show] do
+    resources :bets, only: [:create]
+  end
+  #resources :bets, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

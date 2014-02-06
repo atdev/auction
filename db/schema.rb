@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120222448) do
+ActiveRecord::Schema.define(version: 20140206023639) do
+
+  create_table "bets", force: true do |t|
+    t.integer  "lot_id"
+    t.integer  "user_id"
+    t.decimal  "bet_amount"
+    t.integer  "bet_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -29,6 +38,8 @@ ActiveRecord::Schema.define(version: 20140120222448) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.datetime "time_end"
+    t.decimal  "bet_step"
   end
 
   create_table "pictures", force: true do |t|

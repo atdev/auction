@@ -43,8 +43,14 @@
           i.icon-thumbs-up
         span.btn
           i.icon-thumbs-down
-  .span4
-    h3 = @lot.name
+  .span4 id="lot_#{@lot.id}"
+    h3
+      = @lot.name
+    h4
+      | Time end:
+      - if @lot.time_end
+        span.time_end
+          = @lot.time_end.to_formatted_s(:db)
     small - (14MP, 18x Optical Zoom) 3-inch LCD
     hr.soft
       form.form-horizontal.qtyFrm
@@ -54,7 +60,8 @@
           .controls
             input.span12 placeholder="Qty." type="number"
           br
-            button.btn.btn-large.btn-primary.pull-right type="submit"
+            = link_to 'Bet', lot_bets_path(lot_id: @lot.id), remote: true, method: :post, class: 'btn btn-success btn-large'
+            /button.btn.btn-large.btn-primary.pull-right type="submit"
               | Add to cart
               i.icon-shopping-cart
       hr.soft
@@ -79,3 +86,6 @@
           br.clr
             a href="#" name="detail"
             hr.soft
+
+/= subscribe_to '/lots/update'
+= subscribe_to "/lots/update"

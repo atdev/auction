@@ -1,13 +1,27 @@
-div class="row"
-  aside class="span4"
-    section
-      h1
-        = @lot.name
-      p
-        |min bet = #{@lot.min_bet}
-      p
-        - if @lot.pictures
-          - @lot.pictures.each do |p|
-              p= image_tag p.image
-        - else
-          p The Lot has no image
+.row
+  .col-lg-5
+    .panel.panel-default
+      .panel-heading
+        .lot_title
+          = @lot.name
+      .panel-body
+        p
+          |Category = #{@lot.category.name}
+        p
+          |Min bet = #{@lot.min_bet}
+        p
+          |time_step = #{@lot.time_step}
+        p
+          |status = #{@lot.status}
+        p
+          |bet_step = #{@lot.bet_step}
+        p
+          |bet_step = #{@lot.time_end}
+        p
+          - if @lot.pictures
+            - @lot.pictures.each do |p|
+                p= image_tag p.image
+          - else
+            p The Lot has no image
+      .panel-footer
+        = link_to "Edit", edit_admin_lot_path(@lot), class: 'btn btn-primary'

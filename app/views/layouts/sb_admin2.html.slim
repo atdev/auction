@@ -207,18 +207,24 @@ html
                 li
                   a href="morris.html"
               /! /.nav-second-level
+            /li
+            /  a href="tables.html"
+            /    i.fa.fa-table.fa-fw
+            /    | Tables
+            /    span.fa.arrow
+            /  ul.nav.nav-second-level
             li
-              a href="tables.html"
+              a href="#{admin_categories_path}"
                 i.fa.fa-table.fa-fw
-                | Tables
-                span.fa.arrow
-              ul.nav.nav-second-level
-                li
-                  a href="#{admin_categories_path}" Categories
-                li
-                  a href="#{admin_products_path}" Products
-                li
-                  a href="#{admin_lots_path}" Auctions
+                | Categories
+            li
+              a href="#{admin_products_path}"
+                i.fa.fa-table.fa-fw
+                | Products
+            li
+              a href="#{admin_lots_path}"
+                i.fa.fa-table.fa-fw
+                | Auctions
             li
               a href="forms.html"
                 i.fa.fa-edit.fa-fw

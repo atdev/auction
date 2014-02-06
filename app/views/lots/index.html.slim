@@ -25,6 +25,7 @@
               a.btn.btn-primary
                 |$222.00
 = paginate @lots
+= subscribe_to "/lots/update"
 /= will_paginate @lots
   hr
   .lots-info

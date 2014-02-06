@@ -9,7 +9,4 @@ class LotsController < ApplicationController
     @lot = Lot.find(params[:id])
   end
 
-
-
-
 end

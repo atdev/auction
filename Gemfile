@@ -29,6 +29,8 @@ gem 'nested_form'
 gem 'enumify'
 gem 'inherited_resources'
 gem 'kaminari'
+gem 'private_pub'
+gem 'thin'
 #gem 'will_paginate', '3.0.4'
 
 

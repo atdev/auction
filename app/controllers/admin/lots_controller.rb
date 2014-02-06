@@ -16,6 +16,8 @@ class Admin::LotsController < Admin::BaseController
   def create
     @lot = Lot.new(lot_params)
     @lot.status = :not_started
+    @lot.time_end = Time.now
+
     if @lot.save
       flash[:success] = "Lot created."
       redirect_to [:admin, @lot]
@@ -45,7 +47,7 @@ class Admin::LotsController < Admin::BaseController
 
   private
     def lot_params
-      params.require(:lot).permit(:product_id, :min_bet, :time_step)
+      params.require(:lot).permit(:product_id, :min_bet, :time_step, :bet_step)
     end
 
     def set_lot

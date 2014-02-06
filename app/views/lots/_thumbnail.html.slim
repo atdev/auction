@@ -1,6 +1,6 @@
 ul.thumbnails
   - @lots.each do |l|
-    li.span4
+    li.span4 id='lot_#{l.id}'
       .thumbnail
         p
           = '#'+l.id.to_s
@@ -12,12 +12,16 @@ ul.thumbnails
           - else
             = image_tag image_path('support/no_image.jpg'), width: 160
         .caption
-          h5 23:47
+          h5
+            - if l.time_end
+              span.time_end
+                = l.time_end.to_formatted_s(:db)
           p last bet: Username
           h4
             a.btn href='#{lot_path(l)}'
               i.icon-zoom-in
-            a.btn.btn-success
+            = link_to 'Bet', lot_bets_path(lot_id: l.id), remote: true, class: 'btn btn-success', method: :post
+            /a.btn.btn-success
               |Bet
 
             a.btn.btn-primary
