@@ -1,6 +1,6 @@
 CREATE TABLE "bets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "lot_id" integer, "user_id" integer, "bet_amount" decimal, "bet_time" integer, "created_at" datetime, "updated_at" datetime);
 CREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime, "ancestry" varchar(255));
-CREATE TABLE "lots" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "min_bet" decimal, "time_step" integer, "created_at" datetime, "updated_at" datetime, "status" varchar(255), "time_end" datetime, "bet_step" decimal);
+CREATE TABLE "lots" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "min_bet" decimal, "time_step" integer, "created_at" datetime, "updated_at" datetime, "status" varchar(255), "time_end" datetime, "bet_step" decimal, "time_start" integer);
 CREATE TABLE "pictures" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "imageable_id" integer, "imageable_type" varchar(255), "created_at" datetime, "updated_at" datetime, "image" varchar(255));
 CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "category_id" integer, "name" varchar(255), "shop_price" integer, "image" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime);
 CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
@@ -36,3 +36,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140206010659');
 INSERT INTO schema_migrations (version) VALUES ('20140206020434');
 
 INSERT INTO schema_migrations (version) VALUES ('20140206023639');
+
+INSERT INTO schema_migrations (version) VALUES ('20140207192839');

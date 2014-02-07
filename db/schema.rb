@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206023639) do
+ActiveRecord::Schema.define(version: 20140207192839) do
 
   create_table "bets", force: true do |t|
     t.integer  "lot_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140206023639) do
     t.string   "status"
     t.datetime "time_end"
     t.decimal  "bet_step"
+    t.integer  "time_start"
   end
 
   create_table "pictures", force: true do |t|
