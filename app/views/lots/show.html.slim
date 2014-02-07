@@ -56,8 +56,14 @@
       form.form-horizontal.qtyFrm
         .control-group
           label.control-label
-            span $222.00
-          .controls
+            |$
+            span.current_price
+              = @lot.current_price
+          label
+            | User:
+            span.user_bet
+              = @lot.last_bet_user.email unless @lot.last_bet_user.nil?
+          /.controls
             input.span12 placeholder="Qty." type="number"
           br
             = link_to 'Bet', lot_bets_path(lot_id: @lot.id), remote: true, method: :post, class: 'btn btn-success btn-large'
@@ -87,5 +93,4 @@
             a href="#" name="detail"
             hr.soft
 
-/= subscribe_to '/lots/update'
 = subscribe_to "/lots/update"

@@ -15,8 +15,8 @@ div.row
             = f.label :product_id
             = f.select :product_id, Product.all.map {|p| [p.name, p.id]}, {include_blank: 'None'}, class: 'form-control'
           .form-group
-            = f.label :min_bet
-            = f.text_field :min_bet, class: 'form-control'
+            = f.label :start_price
+            = f.text_field :start_price, class: 'form-control'
           .form-group
             = f.label :time_step
             = f.text_field :time_step, class: 'form-control'

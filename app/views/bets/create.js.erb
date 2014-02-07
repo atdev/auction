@@ -1,4 +1,6 @@
 <% publish_to '/lots/update' do %>
   $('#lot_' + <%=@bet.lot.id%> + ' .time_end').html('<%= j @bet.lot.time_end.to_formatted_s(:db)%>')
+  $('#lot_' + <%=@bet.lot.id%> + ' .user_bet').html('<%= j @bet.lot.last_bet_user.email%>')
+  $('#lot_' + <%=@bet.lot.id%> + ' .current_price').html('<%= j @bet.lot.current_price.to_s%>')
 <% end %>
 

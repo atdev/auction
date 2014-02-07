@@ -47,7 +47,7 @@ class Admin::LotsController < Admin::BaseController
 
   private
     def lot_params
-      params.require(:lot).permit(:product_id, :min_bet, :time_step, :bet_step)
+      params.require(:lot).permit(:product_id, :time_step, :bet_step, :start_price)
     end
 
     def set_lot

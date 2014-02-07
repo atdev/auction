@@ -16,7 +16,10 @@ ul.thumbnails
             - if l.time_end
               span.time_end
                 = l.time_end.to_formatted_s(:db)
-          p last bet: Username
+          p
+            | User:
+            span.user_bet
+              = l.last_bet_user.email unless l.last_bet_user.nil?
           h4
             a.btn href='#{lot_path(l)}'
               i.icon-zoom-in
@@ -25,4 +28,6 @@ ul.thumbnails
               |Bet
 
             a.btn.btn-primary
-              |$222.00
+              |$
+              span.current_price
+                = l.current_price
