@@ -7,7 +7,7 @@ class Lot < ActiveRecord::Base
   validates :time_step, numericality: { greater_than_or_equal_to: 30 }
 
   enum :status, [:not_started, :started, :finished]
-
+  #after_create :init_time_end
   def name
     self.product.name
   end
@@ -24,4 +24,9 @@ class Lot < ActiveRecord::Base
     self.time_end += self.time_step
     self.save!
   end
+
+  protected
+    #def init_time_end
+    #
+    #end
 end
