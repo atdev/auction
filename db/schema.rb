@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207230226) do
+ActiveRecord::Schema.define(version: 20140208014837) do
 
   create_table "bets", force: true do |t|
     t.integer  "lot_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140207230226) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_admin"
+    t.integer  "bets_count"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -4,6 +4,7 @@ class Bet < ActiveRecord::Base
 
   after_create :increase_lot_time_end
   after_create :calc_bet_amount
+  after_create :reduce_bets_count
 
   private
     def increase_lot_time_end
@@ -13,5 +14,9 @@ class Bet < ActiveRecord::Base
     def calc_bet_amount
       self.bet_amount = self.lot.update_current_price
       self.save!
+    end
+
+    def reduce_bets_count
+      self.user.reduce_bets_count unless self.user.is_admin?
     end
 end

@@ -4,3 +4,7 @@
 - if alert
   p class="alert"
     = alert
+
+- if flash[:should_has_bets]
+  p.alert
+    = flash[:should_has_bets]
