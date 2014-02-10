@@ -25,7 +25,7 @@ class Lot < ActiveRecord::Base
     self.save!
   end
 
-  def update_current_price
+  def increase_current_price
     self.current_price += self.bet_step
     if self.save!
       self.current_price

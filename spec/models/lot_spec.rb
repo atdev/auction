@@ -16,4 +16,10 @@ describe Lot do
     @lot.time_end.should == time
   end
 
+  it "should increase current_price" do
+    cp = @lot.current_price
+    @lot.increase_current_price
+    @lot.current_price.should == cp + @lot.bet_step
+  end
+
 end
