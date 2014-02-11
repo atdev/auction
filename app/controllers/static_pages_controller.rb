@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
-  def main
+  layout "application"
+  def main_old
     @is_user
   end
 end

@@ -12,6 +12,10 @@ class Lot < ActiveRecord::Base
     self.product.name
   end
 
+  def description
+    self.product.description
+  end
+
   def category
     self.product.category
   end

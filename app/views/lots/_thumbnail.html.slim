@@ -1,32 +1,34 @@
-ul.thumbnails
-  - @lots.each do |l|
-    li.span4 id='lot_#{l.id}'
-      .thumbnail
+.row
+  ul.hProductItems.clearfix
+    - @lots.each do |l|
+      li.span3.clearfix id='lot_#{l.id}'
         p
           = '#'+l.id.to_s
           | &nbsp
           = link_to l.name, lots_path(l)
-        a.image-container
-          - if l.pictures.count > 0
-            = image_tag l.pictures.first.image, width: 160
-          - else
-            = image_tag image_path('support/no_image.jpg'), width: 160
-        .caption
-          h5
+        .thumbnail
+          a href=""
+            - if l.pictures.count > 0
+              = image_tag l.pictures.first.image, width: 130
+            - else
+              = image_tag image_path('support/no_image.jpg'), width: 130
+        .thumbSetting
+          .thumbUser
+            a.invarseColor href="#"
+              p
+                | User:
+                span.user_bet
+                  = l.last_bet_user.email unless l.last_bet_user.nil?
+          .thumbTime
             - if l.time_end
               span.time_end
                 = l.time_end.to_formatted_s(:db)
-          p
-            | User:
-            span.user_bet
-              = l.last_bet_user.email unless l.last_bet_user.nil?
-          h4
+          .thumbButtons
             a.btn href='#{lot_path(l)}'
               i.icon-zoom-in
+            | &nbsp
             = link_to 'Bet', lot_bets_path(lot_id: l.id), remote: true, class: 'btn btn-success', method: :post
-            /a.btn.btn-success
-              |Bet
-
+            | &nbsp
             a.btn.btn-primary
               |$
               span.current_price

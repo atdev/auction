@@ -1,7 +1,8 @@
 Auction::Application.routes.draw do
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
-  root :to => "static_pages#main"
+  #root :to => "static_pages#main"
+  root :to => "lots#index"
   get 'admin' => 'admin/categories#index'
 
   namespace :admin do

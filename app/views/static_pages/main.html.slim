@@ -1,7 +1,41 @@
-h1 StaticPages#main
-p Find me in app/views/static_pages/main.html.slim
+.row
+  .span12
+    #featuredItems
+      .titleHeader.clearfix
+        h3
+          | Featured Items
+        .pagers
+          .btn-toolbar
+            button.btn.btn-mini
+              | View All
+      .row
+        ul.hProductItems.clearfix
+          - 8.times do
+            li.span3.clearfix
+              p
+                | #15 Anna karenina
+              .thumbnail
+                a href=""
+                  img alt="" src="#{image_path('pic/212x192.jpg')}"
+              .thumbSetting
+                .thumbUser
+                  a.invarseColor href="#"
+                    | User:admin@auction.ru
+                .thumbTime
+                  | 2014-02-06 04:33:08
+                .thumbButtons
+                  button.btn.btn-success.btn-small
+                    | Bet
+                  | &nbsp
+                  button.btn.btn-primary.btn-small
+                    | $1150.00
 
-- if user_signed_in?
-  p User is signed_in
-- else
-  p User is a Guest
+br
+br
+hr
+.row
+  .span7
+    h3 News here
+    /img src="#{image_path('pic/614x300.jpg')}"
+  .span4
+     h3 Chat here

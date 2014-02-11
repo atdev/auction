@@ -1,96 +1,50 @@
-.span12
-  #gallery.span6
-    a href="#" title="Fujifilm FinePix S2950 Digital Camera"
-        img alt="Fujifilm FinePix S2950 Digital Camera" src="#{@lot.pictures.first.image}" style="width:100%"
-
-    #differentview.moreOptopm.carousel.slide
-      .carousel-inner
-        .item.active
-          - if @lot.pictures.size>0
-            - @lot.pictures do |p|
+.row
+  .span12
+    = render 'shared/breadcrumb'
+    .row id="lot_#{@lot.id}"
+      .span4
+        .fotorama data-nav="thumbs"
+          - if true#@lot.product.pictures.size>0
+            - @lot.pictures.each do |p|
               a href="#{p.image}"
-                /img alt="" src="#{p.image}" style="width:29%"
-                image_tag image_path('support/no_image.jpg'), width: '29%'
-          - if true
-            a href="#{image_path('support/no_image.jpg')}"
-              = image_tag image_path('support/no_image.jpg'), width: '29%'
-              /img alt="" src="#{image_path('support/no_image.jpg')}" style="width:29%"
-            a href="#{image_path('support/no_image.jpg')}"
-              = image_tag image_path('support/no_image.jpg'), width: '29%'
-            a href="#{image_path('support/no_image.jpg')}"
-              = image_tag image_path('support/no_image.jpg'), width: '29%'
-              /img alt="" src="#{image_path('support/no_image.jpg')}" style="width:29%"
-        .item
-          a href="#{image_path('support/no_image.jpg')}"
-            = image_tag image_path('support/no_image.jpg'), width: '29%'
-            /img alt="" src="#{image_path('support/no_image.jpg')}" style="width:29%"
-          a href="#{image_path('support/no_image.jpg')}"
-            = image_tag image_path('support/no_image.jpg'), width: '29%'
-          a href="#{image_path('support/no_image.jpg')}"
-            = image_tag image_path('support/no_image.jpg'), width: '29%'
-            /img alt="" src="#{image_path('support/no_image.jpg')}" style="width:29%"
-    .btn-toolbar
-      .btn-group
-        span.btn
-          i.icon-envelope
-        span.btn
-          i.icon-print
-        span.btn
-          i.icon-zoom-in
-        span.btn
-          i.icon-star
-        span.btn
-          i.icon-thumbs-up
-        span.btn
-          i.icon-thumbs-down
-  .span4 id="lot_#{@lot.id}"
-    h3
-      = @lot.name
-    h4
-      | Time end:
-      - if @lot.time_end
-        span.time_end
-          = @lot.time_end.to_formatted_s(:db)
-    small - (14MP, 18x Optical Zoom) 3-inch LCD
-    hr.soft
-      form.form-horizontal.qtyFrm
-        .control-group
-          label.control-label
-            |$
-            span.current_price
-              = @lot.current_price
-          label
-            | User:
-            span.user_bet
-              = @lot.last_bet_user.email unless @lot.last_bet_user.nil?
-          /.controls
-            input.span12 placeholder="Qty." type="number"
-          br
-            = link_to 'Bet', lot_bets_path(lot_id: @lot.id), remote: true, method: :post, class: 'btn btn-success btn-large'
-            /button.btn.btn-large.btn-primary.pull-right type="submit"
-              | Add to cart
-              i.icon-shopping-cart
-      hr.soft
-        h4 100 items in stock
-        form.form-horizontal.qtyFrm.pull-right
-          .control-group
-            label.control-label
-              span Color
-            .controls
-              select.span12 style="visibility: visible;"
-                option Black
-                option Red
-                option Blue
-                option Brown
-        hr.soft.clr
+                = image_tag p.image, width: '50%'
+      .span5
+        #pb-left-column
+          h3.lot_name
+            = @lot.name
+          #short_description_block
+            #short_description_content
+              p.lot_description
+                = @lot.description
+                /| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula.
+          hr
+          #product_attributes
+            p
+              | Disk space :
+              | Color :
+              | Availability:
+              | Ecomomy :
+          hr
           p
-            | 14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO sensitivity ISO6400 at reduced resolution.
-            | Tracking Auto Focus. Motion Panorama Mode. Face Detection technology with Blink detection and Smile and shoot mode. 4 x AA batteries not included. WxDxH 110.2 ×81.4x73.4mm.
-            | Weight 0.341kg (excluding battery and memory card). Weight 0.437kg (including battery and memory card).
-          a.btn.btn-small.pull-right href="#detail"
-            | More Details
-          br.clr
-            a href="#" name="detail"
-            hr.soft
+            h4
+              | Time end:
+              - if @lot.time_end
+                strong
+                  span.time_end
+                    = @lot.time_end.to_formatted_s(:db)
+          p
+            h4.price
+              strong
+                |$
+                span.current_price
+                  = @lot.current_price
+          p
+            h4
+              | User:
+              strong
+                span.user_bet
+                  = @lot.last_bet_user.email unless @lot.last_bet_user.nil?
+          p
+            = link_to 'Bet', lot_bets_path(lot_id: @lot.id), remote: true, method: :post, class: 'btn btn-success'
 
 = subscribe_to "/lots/update"

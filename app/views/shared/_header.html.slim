@@ -1,31 +1,125 @@
-#header
-  .container
-    #welcomeLine.row
-      .span6
-        span.navbar-text
-          - if user_signed_in?
-            |Logged in as
-            strong = current_user.email
-            = link_to "Edit profile", edit_user_registration_path, class:'navbar-link'
-            ||
-            = link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'
-          - else
-            = link_to "Sign up", new_user_registration_path, class: 'navbar-link'
-            ||
-            = link_to "Login", new_user_session_path, class:  'navbar-link'
-      .plull-right-content
+header
+  .upperHeader
+    .container
+      ul.pull-right.inline
+        li
+          a.invarseColor href="#"
+            | My Account
+        li.divider-vertical
+        li
+          a.invarseColor href="#"
+           | My Wish List (5)
+        li.divider-vertical
+        li
+          a.invarseColor href="#"
+           | Shoping Cart
+        li.divider-vertical
+        li
+          a.invarseColor href="#"
+           | Checkout
+      p
+        - if user_signed_in?
+          span Logged in as
+          | &nbsp
+          strong = current_user.email
+          | &nbsp
+          = link_to "Edit profile", edit_user_registration_path, class:'navbar-link'
+          ||
+          = link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link'
+        - else
+          = link_to "Sign up", new_user_registration_path, class: 'navbar-link'
+          ||
+          = link_to "Login", new_user_session_path, class:  'navbar-link'
+    /! end container
+  /! end upperHeader
+  .middleHeader
+    .container
+      .middleContainer.clearfix
+        .siteLogo.pull-left
+          h1
+            a href="#{lots_path}"
+             | ShopFine
         .pull-right
-          a href="product_summary.html"
-            span Fr
-          a href="product_summary.html"
-            span Es
-          span.btn.btn-mini En
-          a href="product_summary.html"
-            span £
-          span.btn.btn-mini $155.00
-          a href="product_summary.html"
-            span $
-          a href="product_summary.html"
-            span.btn.btn-mini.btn-primary
-              i.icon-shopping-cart.icon-white
-              | [ 3 ] Itemes in your cart
+          form.siteSearch action="page" method="get"
+            .input-append
+              input#appendedInputButton.span2.search_input placeholder="Search..." type="text"
+                button.btn.btn-primary name="" type="submit"
+                  i.icon-search
+        .pull-right
+          .btn-group
+            a.btn.dropdown-toggle data-toggle="dropdown" href="#"
+              | $
+              span.caret
+            ul.dropdown-menu.currency
+              li
+                a href="#"
+                 | $
+              li.divider
+              li
+                a href="#"
+                 | €
+          .btn-group
+            a.btn.dropdown-toggle data-toggle="dropdown" href="#"
+              | EN
+              span.caret
+            ul.dropdown-menu.language
+              li
+                a href="#"
+                 | EN
+              li.divider
+              li
+                a href="#"
+                 | RU
+          .btn-group
+            a.btn.dropdown-toggle data-toggle="dropdown" href="#"
+              i.icon-shopping-cart
+              | 3 Items
+              span.caret
+            .dropdown-menu.cart-content.pull-right
+              table.table-cart
+                tbody
+                  tr
+                    td.cart-product-info
+                      a href="#"
+                        img alt="product image" src="#{image_path('pic/72x72.jpg')}"
+                      .cart-product-desc
+                        p
+                          a.invarseColor href="#"
+                           | Foliomania the designer portfolio brochure
+                        ul.unstyled
+                          li Available: Yes
+                          li Color: Black
+                    td.cart-product-setting
+                      p
+                        strong 1x-$500.00
+                      a.remove-pro data-original-title="" data-title="Delete" data-toggle="tooltip" href="#" title=""
+                        i.icon-trash
+                  tr
+                    td.cart-product-info
+                      a href="#"
+                        img alt="product image" src="#{image_path('pic/72x72.jpg')}"
+                      .cart-product-desc
+                        p
+                          a.invarseColor href="#"
+                        ul.unstyled
+                          li Available: Yes
+                          li Color: Black
+                    td.cart-product-setting
+                      p
+                        strong 2x-$450.00
+                      a.remove-pro data-original-title="" data-title="Delete" data-toggle="tooltip" href="#" title=""
+                        i.icon-trash
+                tfoot
+                  tr
+                    td.cart-product-info
+                      a.btn.btn-small href="#" Vew cart
+                      a.btn.btn-small.btn-primary href="#" Checkout
+                    td
+                      h3
+                        | TOTAL
+                        br $1,598.30
+        /! end pull-right
+      /! end middleCoontainer
+    /! end container
+
+  = render 'shared/main_nav'
