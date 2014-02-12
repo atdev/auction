@@ -11,11 +11,14 @@ feature "Admin manage categories", %q{
       FactoryGirl.create(:admin)
       5.times { FactoryGirl.create(:category) }
       start_admin_session 'admin@test.com', '12345678'
+      @path = admin_categories_path
     end
 
+    it_behaves_like "Admin accessible"
+
     scenario "Admin tries to get list of categories" do
-      visit admin_categories_path
-      current_path.should == admin_categories_path
+      visit @path
+      current_path.should == @path
       page.should have_content 'Categories'
       Category.first(5).each do |c|
         page.should have_content(c.name)
@@ -40,7 +43,7 @@ feature "Admin manage categories", %q{
     end
 
     scenario "Admin tries to create the sub category for the root category" do
-      visit admin_categories_path
+      visit @path
       @root_category = find('.table').first('.category')
       @root_category.click
       click_on 'Add Subcategory'
@@ -66,18 +69,19 @@ feature "Admin manage categories", %q{
       fill_in 'Name', with: 'category_test_1'
       click_on 'Edit the category'
       page.should have_content 'Category updated'
+      page.should have_selector('.category_title', text: 'category_test_1')
     end
 
     describe "js", js: true do
       scenario "Admin tries to delete the category" do
-        visit admin_categories_path
+        visit @path
         page.first('.delete_link').click
         page.driver.browser.switch_to.alert.accept
         page.should have_content 'Category deleted'
       end
 
       scenario "Admin tries to go to the category's page by using jstree menu" do
-        visit admin_categories_path
+        visit @path
         first_category = Category.first
         within "#jstree_div" do
           click_on first_category.name

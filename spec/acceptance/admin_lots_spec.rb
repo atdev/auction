@@ -15,12 +15,15 @@ feature "Admin manage lots", %q{
         FactoryGirl.create(:lot, product_id: product.id)
       end
       start_admin_session 'admin@test.com', '12345678'
+      @path = admin_lots_path
     end
 
+    it_behaves_like "Admin accessible"
+
     scenario "Admin tries to get list of lots" do
-      visit admin_lots_path
-      current_path.should == admin_lots_path
-      page.should have_content 'List of Lots'
+      visit @path
+      current_path.should == @path
+      page.should have_content 'Lots'
       Lot.first(5).each do |lot|
         page.should have_content(lot.name)
       end
@@ -36,18 +39,19 @@ feature "Admin manage lots", %q{
       visit new_admin_lot_path
       product = Product.first
       select product.name, from: 'Product'
-      fill_in 'Min bet', with: 22
+      fill_in 'Start price', with: 22
       fill_in 'Time step', with: 60
+      fill_in 'Bet step', with: 60
       click_on 'Create the lot'
-      page.should have_content 'Lot created'
-      page.should have_content 'min bet = 22'
+      page.should have_selector('.success', text: 'Lot created')
+      page.should have_content 'Start price = 22'
     end
 
     scenario "Admin tries to create the lot with invalid params" do
       visit new_admin_lot_path
       product = Product.first
       select product.name, from: 'Product'
-      fill_in 'Min bet', with: 0
+      fill_in 'Start price', with: 0
       fill_in 'Time step', with: 0
       click_on 'Create the lot'
       page.should have_css '#error_explanation'
@@ -56,13 +60,13 @@ feature "Admin manage lots", %q{
     scenario "Admin tries to edit the lot saccessfully" do
       lot = Lot.first
       visit edit_admin_lot_path(lot)
-      fill_in 'Min bet', with: lot.min_bet+1
+      fill_in 'Start price', with: lot.start_price+1
       click_on 'Edit the lot'
       page.should have_content 'Lot updated'
     end
 
     scenario "Admin tries to delete the lot" do
-      visit admin_lots_path
+      visit @path
       expect { page.first(".delete_link").click }.to change(Lot, :count).by(-1)
     end
   end

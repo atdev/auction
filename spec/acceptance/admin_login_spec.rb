@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'acceptance/acceptance_helper'
 
 feature "Admin logging in to admin area", %q{
   In order to manage auction's settings

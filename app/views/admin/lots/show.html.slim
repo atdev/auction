@@ -8,13 +8,15 @@
         p
           |Category = #{@lot.category.name}
         p
-          |time_step = #{@lot.time_step}
+          |Time step = #{@lot.time_step}
         p
-          |status = #{@lot.status}
+          |Start price = #{@lot.start_price}
         p
-          |bet_step = #{@lot.bet_step}
+          |Status = #{@lot.status}
         p
-          |bet_step = #{@lot.time_end}
+          |Bet step = #{@lot.bet_step}
+        p
+          |Time end = #{@lot.time_end}
         p
           - if @lot.pictures
             - @lot.pictures.each do |p|

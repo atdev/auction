@@ -14,11 +14,14 @@ feature "Admin manage products", %q{
         FactoryGirl.create(:product, category_id: category.id)
       end
       start_admin_session 'admin@test.com', '12345678'
+      @path = admin_products_path
     end
 
+    it_behaves_like "Admin accessible"
+
     scenario "Admin tries to get list of products" do
-      visit admin_products_path
-      current_path.should == admin_products_path
+      visit @path
+      current_path.should == @path
       page.should have_content 'Products'
       Product.first(5).each do |product|
         page.should have_content(product.name)
@@ -40,7 +43,7 @@ feature "Admin manage products", %q{
       fill_in 'Description', with: 'description for product_test_1'
       click_on 'Create the product'
       page.should have_content 'Product created'
-      page.should have_content 'product_test_1'
+      page.should have_selector('.product_title', text: 'product_test_1')
     end
 
     scenario "Admin tries to create the product with invalid params" do
@@ -55,11 +58,11 @@ feature "Admin manage products", %q{
       fill_in 'Name', with: 'product_test_333'
       click_on 'Edit the product'
       page.should have_content 'Product updated'
-      page.should have_content 'product_test_333'
+      page.should have_selector('.product_title', text: 'product_test_333')
     end
 
     scenario "Admin tries to delete the product" do
-      visit admin_products_path
+      visit @path
       expect { page.first(".delete_link").click }.to change(Product, :count).by(-1)
     end
   end

@@ -1,10 +1,16 @@
-- if notice
-  p class="notice"
-    = notice
-- if alert
-  p class="alert"
-    = alert
+/- if notice
+/  p class="notice"
+/    = notice
+/- if success
+/  p class="success"
+/    = success
+/- if alert
+/  p class="alert"
+/    = alert
+/
+/- if flash[:should_has_bets]
+/  p.alert
+/    = flash[:should_has_bets]
 
-- if flash[:should_has_bets]
-  p.alert
-    = flash[:should_has_bets]
+- flash.each do |name, msg|
+  = content_tag :div, msg, class: name
