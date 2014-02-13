@@ -15,8 +15,8 @@ class Admin::LotsController < Admin::BaseController
 
   def create
     @lot = Lot.new(lot_params)
-    @lot.status = :not_started
-    @lot.time_end = Time.now
+    #@lot.status = :not_started
+    #@lot.time_end = Time.now
 
     if @lot.save
       flash[:success] = "Lot created."

@@ -5,8 +5,8 @@ class Lot < ActiveRecord::Base
   validates :product_id, :time_step, :bet_step, presence: true
   validates :time_step, numericality: { greater_than_or_equal_to: 30 }
 
-  enum :status, [:not_started, :started, :finished]
-  after_create :init_current_price
+  enum :status, [:not_started, :started, :finished], :allow_nil => true
+  after_create :init_lot
 
   def name
     self.product.name
@@ -24,18 +24,18 @@ class Lot < ActiveRecord::Base
     self.product.pictures
   end
 
-  def increase_time_end
-    self.time_end += self.time_step
-    self.save!
-  end
-
-  def increase_current_price
-    self.current_price += self.bet_step
-    if self.save!
-      self.current_price
+  def active?
+    if self.status == :started
+      true
     else
       false
     end
+  end
+
+  def change_for_bet
+    self.time_end += self.time_step
+    self.current_price += self.bet_step
+    self.save!
   end
 
   def last_bet_user
@@ -47,12 +47,27 @@ class Lot < ActiveRecord::Base
   end
 
   private
+    def init_time_start
+      self.time_start = Time.now
+    end
+
     def init_time_end
       self.time_end = self.time_start + self.time_step
     end
 
     def init_current_price
       self.current_price = self.start_price
+    end
+
+    def init_status
+      self.status = :not_started
+    end
+
+    def init_lot
+      init_time_start
+      init_time_end
+      init_current_price
+      init_status
       self.save!
     end
 

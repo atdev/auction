@@ -2,20 +2,17 @@ class Bet < ActiveRecord::Base
   belongs_to :user
   belongs_to :lot
 
-  after_create :increase_lot_time_end
-  after_create :calc_bet_amount
   after_create :reduce_bets_count
+  after_create :change_lot_for_bet
+  after_create :fetch_current_price
 
-  def last_bet_user_for(lot_id)
-    Bet.find(lot_id: lot_id).last()
-  end
   private
-    def increase_lot_time_end
-      self.lot.increase_time_end
+    def change_lot_for_bet
+      self.lot.change_for_bet
     end
 
-    def calc_bet_amount
-      self.bet_amount = self.lot.increase_current_price
+    def fetch_current_price
+      self.bet_amount = self.lot.current_price
       self.save!
     end
 

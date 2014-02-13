@@ -1,6 +1,7 @@
 class BetsController < ApplicationController
   before_action :redirect_guest, only: :create
   before_action :user_has_bets, only: :create
+  before_action :lot_is_active, only: :create
 
   def create
     lot_id = params[:lot_id]
@@ -16,7 +17,7 @@ class BetsController < ApplicationController
   private
     def redirect_guest
       unless user_signed_in?
-        flash[:sign_in_make_bet] = "User should sign in to make a bet!"
+        flash.now[:alert] = "User should sign in to make a bet!"
         respond_to do |format|
           format.js { js_redirect new_user_session_path }
         end
@@ -25,7 +26,18 @@ class BetsController < ApplicationController
 
     def user_has_bets # will rewrite in the future
       unless current_user.bets_count && current_user.bets_count > 0
-        flash[:should_has_bets] = "User must have bets in his account for betting!"
+        flash.now[:alert] = "User must have bets in his account for betting!"
+        respond_to do |format|
+          format.js { js_redirect lots_path }
+        end
+      end
+    end
+
+    def lot_is_active
+      lot_id = params[:lot_id]
+      lot = Lot.find(lot_id)
+      unless lot.active?
+        flash[:alert] = "Lot is not active!"
         respond_to do |format|
           format.js { js_redirect lots_path }
         end
