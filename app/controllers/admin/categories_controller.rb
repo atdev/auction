@@ -57,9 +57,9 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   private
-    def build_resource_params
-      [params.fetch(:category, {}).permit(:name, :parent_id, picture_attributes: [:image])]
-    end
+    #def build_resource_params
+    #  [params.fetch(:category, {}).permit(:name, :parent_id, picture_attributes: [:image])]
+    #end
 
     def category_params
       params.require(:category).permit(:name, :parent_id, picture_attributes: [:id, :image, :_destroy])

@@ -37,5 +37,11 @@ div.row
               = f.submit "Edit the lot", class: "btn btn-large btn-primary"
               | &nbsp
               = link_to "Show", admin_lot_path(@lot), class: 'btn btn-primary'
+            - if @lot.status.to_s == 'not_started'
+              | &nbsp
+              = link_to 'Activate', '#', class:'lot_activate_link btn btn-success'
+            - if @lot.status.to_s == 'started'
+              | &nbsp
+              = link_to 'Reset', '#', class:'lot_reset_link btn btn-primary'
 
 
